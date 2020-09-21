@@ -2,7 +2,7 @@ const pm2 = require("pm2");
 const { execSync } = require("child_process");
 const os = require("os");
 
-const MEMORY_PERCENTAGE_LIMIT = 20;
+const MEMORY_PERCENTAGE_LIMIT = 60;
 
 function getMemoryLimit() {
   const totalCpus = os.cpus().length;
@@ -65,7 +65,7 @@ pm2.connect(true, function (err) {
         script: "boot.js",
         name: service || "lite",
         exec_mode: "cluster",
-        instances: 0,
+        instances: 4,
         output: "NULL",
         error: "NULL",
         max_memory_restart: LIMIT,

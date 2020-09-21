@@ -1,9 +1,20 @@
-var http = require("http");
+const Koa = require('koa');
+const app = new Koa();
 
-http
-  .createServer(function (req, res) {
-    console.log("Child ID", typeof process.env.NODE_APP_INSTANCE);
-    res.write("Hello World 111 ! " + process.env.ABC);
-    res.end(); //end the response
-  })
-  .listen(8080);
+const adjie = [];
+
+// response
+app.use(ctx => {
+  ctx.body = 'Hello Koa';
+
+  if(ctx.url === '/loop') {
+    // simulate alocate memory with array push
+    while (true) {
+      //your code
+      adjie.push([[1,1,1,1,1,2,3,2,2,3,4,3,3,], '33', 90]);
+    }
+  }
+
+});
+
+app.listen(3000);
